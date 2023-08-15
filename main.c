@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:58:17 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/05/08 19:06:42 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:38:47 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char *matrix[] = {"ls", "-l", NULL};
+	char *cmd1[] = {"ls", "-l", NULL};
+	char *cmd2[] = {"ls", NULL};
+	int fd[2];
 	pid_t id;
-
+		
+	pipe(fd);
 	id = fork();
 	if (id == 0)
-		execve("/bin/ls", matrix, envp);
+		execve("/bin/ls", cmd1, envp);
+	id = fork();
+	if (id == 0)
+		execve("/bin/ls", cmd2, envp);
 	printf("hola Pepe\n");
 
 	//while(envp[cont])
