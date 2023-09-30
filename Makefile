@@ -25,19 +25,19 @@ RM              = rm -f
 all: ${NAME} libft
 
 ${NAME}:        ${OBJS}
-						make -C $(LIB)
-						$(CC) $(OBJS) $(CFLAGS) -o $(NAME) $(LIB)/libft.a
+		make -C $(LIB)
+		$(CC) $(OBJS) $(CFLAGS) -o $(NAME) $(LIB)/libft.a
 
 exe:
 	./$(NAME)
 
 clean:
-                @${RM} ${OBJS} ${BONUS_OBJS}
-                make -C $(LIB) clean
+	@${RM} ${OBJS} ${BONUS_OBJS}
+	make -C $(LIB) clean
 
 fclean: clean
-                ${RM} ${NAME}
-                make -C $(LIB) fclean
+	${RM} ${NAME}
+	make -C $(LIB) fclean
 
 re: fclean all
 
