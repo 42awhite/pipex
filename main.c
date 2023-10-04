@@ -21,9 +21,9 @@ char    *find_path(char **envp)
 int main (int argc, char **argv, char **envp)
 {
     argc = 0;
-    argv = NULL;
     char *path;
     char **all_path;
+    char *join_cmd;
 
     //int i = 0;
     //while (envp[i])
@@ -39,9 +39,20 @@ int main (int argc, char **argv, char **envp)
     all_path = ft_split(path, ':');
 
     int i = 0;
+    //while (all_path[i])
+    //{
+    //    printf("%s\n", all_path[i]);
+    //    i++;
+    //}
+    
+    //printf("%s \n", ft_strjoin(all_path[0], argv[0]));
+    i  = 0;
     while (all_path[i])
     {
-        printf("%s\n", all_path[i]);
+        join_cmd = ft_strjoin(all_path[i], "/");
+        join_cmd = ft_strjoin(join_cmd, argv[1]);
+        if (access(join_cmd, F_OK) == 0)
+            printf("%s\n", join_cmd);
         i++;
     }
 }
