@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:59:39 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/10/12 13:16:09 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:08:08 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void ft_exec(char *cmd, char **envp)
 	char **cmd_arg;
 	
 	cmd_arg = ft_split(cmd, ' ');
-	fn_cmd = final_cmd(cmd_arg[0], envp);
-	execve(fn_cmd, cmd_arg, envp);
+	if (access(cmd, F_OK + X_OK) != 0) //esto está malm hacer Pepeforma buscando la / ./ ../ en argv, si tiene esto no hacer join
+	{
+		fn_cmd = final_cmd(cmd_arg[0], envp);
+		execve(fn_cmd, cmd_arg, envp);
+	}
+	else
+		execve(cmd_arg[0], cmd_arg, envp);
 }
