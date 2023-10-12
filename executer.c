@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 20:00:19 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/10/12 12:28:37 by ablanco-         ###   ########.fr       */
+/*   Created: 2023/10/12 11:59:39 by ablanco-          #+#    #+#             */
+/*   Updated: 2023/10/12 13:16:09 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-
-# define LEFT 1
-# define RIGHT 0
-
-void	input_child(char *infile, char *cmd, int *fd, char **envp);
-void	output_child(char *outfile, char *cmd, int *fd, char **envp);
-
-char	*final_cmd (char *cmd, char **envp);
-void	ft_exec(char *cmd, char **envp);
-
-# endif
-
+void ft_exec(char *cmd, char **envp)
+{
+	char *fn_cmd;
+	char **cmd_arg;
+	
+	cmd_arg = ft_split(cmd, ' ');
+	fn_cmd = final_cmd(cmd_arg[0], envp);
+	execve(fn_cmd, cmd_arg, envp);
+}

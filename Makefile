@@ -6,13 +6,13 @@
 #    By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 20:04:42 by ablanco-          #+#    #+#              #
-#    Updated: 2023/09/28 20:29:58 by ablanco-         ###   ########.fr        #
+#    Updated: 2023/10/12 12:11:42 by ablanco-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRC	=	main.c\
+SRC	=	main.c find_cmd.c child.c executer.c
 
 OBJS    = ${SRC:.c=.o}
 LIB             = ./libft
