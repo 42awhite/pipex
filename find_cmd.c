@@ -24,7 +24,7 @@ char *find_cmd(char **all_path, char *cmd_to_find)
 	i = 0;
 	while (all_path[i])
     {
-        cmd = ft_strjoin(all_path[i], "/");
+        cmd = ft_strjoin(all_path[i], "/"); //MIRAR POSIBLES LIKS
         cmd = ft_strjoin(cmd, cmd_to_find);
         if (access(cmd, F_OK) == 0)
         	return(cmd);
