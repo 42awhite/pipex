@@ -20,14 +20,18 @@ char *find_cmd(char **all_path, char *cmd_to_find)
 {
 	int i;
 	char *cmd;
+    char *tmp_cmd;
 
 	i = 0;
 	while (all_path[i])
     {
-        cmd = ft_strjoin(all_path[i], "/"); //MIRAR POSIBLES LIKS
-        cmd = ft_strjoin(cmd, cmd_to_find);
+        tmp_cmd = ft_strjoin(all_path[i], "/"); 
+        cmd = ft_strjoin(tmp_cmd, cmd_to_find);
+        //system("sleep 10");
+        free(tmp_cmd);
         if (access(cmd, F_OK) == 0)
         	return(cmd);
+        free(cmd);
         i++;
     }
     return(NULL);

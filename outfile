@@ -1,0 +1,14 @@
+Makefile
+child.c
+child.o
+executer.c
+executer.o
+find_cmd.c
+find_cmd.o
+libft
+ls
+main.c
+main.o
+outfile
+pipex
+pipex.h
