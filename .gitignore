@@ -1,1 +1,9 @@
-/libft
+# Ignore every file except .c
+*
+!*.c
+
+# Allow libft
+!/libft
+
+# Allow Makefile + pipex.h
+pipex.h
