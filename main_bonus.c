@@ -12,14 +12,27 @@
 
 #include "pipex.h"
 
+void	here_doc(char *ar_1, char *limit)
+{
+	while(limit != fd[0])
+	{
+		//gnl con salto de línea
+	}
+}
+
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	int fd[2];
+	char *hd;
 		
-	if (argc != 6)
-		return(0);
+	hd = "here_doc";
+	//if (argc <= 6)
+	//	return(0);
+	if (ft_strncmp(argv[1], hd, 7) == 0)
+		here_doc(argv[1], argv[2], fd[0]);
 	pipe(fd);
-	input_child(argv[1], argv[2], fd, envp);
-	output_child(argv[4], argv[3], fd, envp);
+	input_child(argv[3], argv[4], fd, envp);
+	output_child(argv[6], argv[5], fd, envp);
 	return(0);
 }
