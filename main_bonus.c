@@ -14,9 +14,14 @@
 
 void	here_doc(char *ar_1, char *limit)
 {
-	while(limit != fd[0])
+	char *line;
+	int	fd;
+
+	fd = open("here_doc.txt", O_RDONLY);
+	while(limit != get_next_line[0]) //Este gnl no va a ser el mismo que el de abajo, poner while 1 para bucle infinito, Hacer break con el delimitador.
 	{
-		//gnl con salto de línea
+		line = get_next_line[0];
+		ft_putstr_fd(line, fd);
 	}
 }
 
