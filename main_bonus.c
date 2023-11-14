@@ -12,32 +12,47 @@
 
 #include "pipex.h"
 
-void	here_doc(char *ar_1, char *limit)
+void	here_doc(char *limit)
 {
 	char *line;
 	int	fd;
 
-	fd = open("here_doc.txt", O_RDONLY);
-	while(limit != get_next_line[0]) //Este gnl no va a ser el mismo que el de abajo, poner while 1 para bucle infinito, Hacer break con el delimitador.
+	fd = open("here_doc.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	while(1)
 	{
-		line = get_next_line[0];
+		line = sget_next_line(0);
+		if (!ft_strncmp(line, limit, ft_strlen(limit)))
+			break ;
 		ft_putstr_fd(line, fd);
 	}
 }
 
+/* MAIN PARA COMPROBAR SOLO FUN HERE_DOC
+int main(void)
+{
+	char *delimit;
+
+	delimit = "sal";
+	here_doc(delimit);
+	return(0);
+}
+*/
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	int fd[2];
+	//int fd[2];
 	char *hd;
-		
+
+	(void)envp[0];	
 	hd = "here_doc";
-	//if (argc <= 6)
-	//	return(0);
-	if (ft_strncmp(argv[1], hd, 7) == 0)
-		here_doc(argv[1], argv[2], fd[0]);
+	if (argc <= 1) //PONER EL LIMITE REAL CUANDO ACABES DE HACER PRUEBITAS
+		return(0);
+	if (ft_strncmp(argv[1], hd, ft_strlen(argv[1])) == 0)
+		here_doc(argv[2]);
+	/*
 	pipe(fd);
 	input_child(argv[3], argv[4], fd, envp);
 	output_child(argv[6], argv[5], fd, envp);
+	*/
 	return(0);
 }
