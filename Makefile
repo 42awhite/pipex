@@ -6,7 +6,7 @@
 #    By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 20:04:42 by ablanco-          #+#    #+#              #
-#    Updated: 2023/10/25 20:25:05 by ablanco-         ###   ########.fr        #
+#    Updated: 2023/11/17 23:33:01 by ablanco-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ BONUS_OBJS = ${SRC_B:.c=.o}
 LIB             = ./libft
 
 CC              = gcc
-CFLAGS  = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=address
 
 RM              = rm -f
 

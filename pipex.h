@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 20:00:19 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/10/12 12:28:37 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:13:46 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define RIGHT 0
 
 void	input_child(char *infile, char *cmd, int *fd, char **envp);
+void 	midle_child(char *cmd, int *fd, char **envp);
 void	output_child(char *outfile, char *cmd, int *fd, char **envp);
 
 char	*final_cmd (char *cmd, char **envp);

@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:34:12 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/10/24 21:41:54 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:14:32 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,26 @@ void	input_child(char *infile, char *cmd, int *fd, char **envp)
 		close(fd[LEFT]);
 		ft_exec(cmd, envp);
 	}
+}
+
+void midle_child(char *cmd, int *fd, char **envp)
+{
+	int id;
+	int prev;
 	
+	prev = fd[RIGHT];
+	close(fd[LEFT]);
+	pipe(fd);
+	id = fork();
+	if (id == 0)
+	{
+		close(fd[RIGHT]);
+		dup2(prev, 0);
+		close(prev);
+		dup2(fd[LEFT], 1);
+		close(fd[LEFT]);
+		ft_exec(cmd, envp);
+	}
 }
 
 void	output_child(char *outfile, char *cmd, int *fd, char **envp)
