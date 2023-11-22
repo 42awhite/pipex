@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:34:12 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/11/17 23:14:32 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:33:38 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 int	ft_open(char *file, int type)
 {
-	int fd;
-	
+	int	fd;
+
+	fd = 0;
 	if (type == INPUT)
 		fd = open(file, O_RDONLY);
 	if (type == OUTPUT)
@@ -28,17 +29,17 @@ int	ft_open(char *file, int type)
 		perror(file);
 		exit(0);
 	}
-	return(fd);
+	return (fd);
 }
 
 void	input_child(char *infile, char *cmd, int *fd, char **envp)
 {
-	int id;
-	int fd_file;
-	
+	int	id;
+	int	fd_file;
+
 	id = fork();
 	if (id == 0)
-	{	
+	{
 		close(fd[RIGHT]);
 		fd_file = ft_open(infile, INPUT);
 		dup2(fd_file, 0);
@@ -49,11 +50,11 @@ void	input_child(char *infile, char *cmd, int *fd, char **envp)
 	}
 }
 
-void midle_child(char *cmd, int *fd, char **envp)
+void	midle_child(char *cmd, int *fd, char **envp)
 {
-	int id;
-	int prev;
-	
+	int	id;
+	int	prev;
+
 	prev = fd[RIGHT];
 	close(fd[LEFT]);
 	pipe(fd);
@@ -71,9 +72,9 @@ void midle_child(char *cmd, int *fd, char **envp)
 
 void	output_child(char *outfile, char *cmd, int *fd, char **envp)
 {
-	int id;
-	int fd_file;
-	
+	int	id;
+	int	fd_file;
+
 	id = fork();
 	if (id == 0)
 	{
