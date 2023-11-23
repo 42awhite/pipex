@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:58:17 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/11/22 21:08:46 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:57:54 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int	i;
 	int	flag;
 	int	status;
+	int n_cmd;
 
 	if (argc < 5)
 		return (0);
@@ -64,10 +65,12 @@ int	main(int argc, char *argv[], char *envp[])
 	output_child(argv[argc - 1], argv[argc - 2], fd, envp);
 	close(fd[0]);
 	close(fd[1]);
-	while (i > 0)
+	n_cmd = argc - 3 - flag;
+	printf("%i\n", n_cmd);
+	while (n_cmd > 0)
 	{
 		waitpid(-1, &status, 0);
-		i--;
+		n_cmd--;
 	}
 	if (flag == 1)
 		unlink("here_doc");
