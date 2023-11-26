@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:34:12 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/11/22 20:33:38 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:40:16 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 
 #define INPUT 0
 #define OUTPUT 1
+
+int	make_fork(void)
+{
+	int	id;
+
+	id = fork();
+	if (id < 0)
+	{
+		perror("id not found");
+		exit(1);
+	}
+	return (id);
+}
 
 int	ft_open(char *file, int type)
 {
@@ -34,10 +47,10 @@ int	ft_open(char *file, int type)
 
 void	input_child(char *infile, char *cmd, int *fd, char **envp)
 {
-	int	id;
 	int	fd_file;
+	int	id;
 
-	id = fork();
+	id = make_fork();
 	if (id == 0)
 	{
 		close(fd[RIGHT]);
@@ -58,7 +71,7 @@ void	midle_child(char *cmd, int *fd, char **envp)
 	prev = fd[RIGHT];
 	close(fd[LEFT]);
 	pipe(fd);
-	id = fork();
+	id = make_fork();
 	if (id == 0)
 	{
 		close(fd[RIGHT]);
@@ -75,7 +88,7 @@ void	output_child(char *outfile, char *cmd, int *fd, char **envp)
 	int	id;
 	int	fd_file;
 
-	id = fork();
+	id = make_fork();
 	if (id == 0)
 	{
 		close(fd[LEFT]);

@@ -6,7 +6,7 @@
 /*   By: ablanco- <ablanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:59:39 by ablanco-          #+#    #+#             */
-/*   Updated: 2023/11/22 20:46:53 by ablanco-         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:22:00 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ void	ft_exec(char *cmd, char **envp)
 	cmd_arg = ft_split(cmd, ' ');
 	if (cmd_arg == NULL || cmd_arg[0] == NULL)
 	{
-		ft_printf("%s: cmd not found", cmd);
-		exit(1);
+		ft_printf("%s: cmd not found\n", cmd);
+		exit(127);
 	}
 	if (!strncmp(cmd_arg[0], "/", 1) || !strncmp(cmd_arg[0], "./", 2)
 		|| !strncmp(cmd_arg[0], "../", 3))
 	{
 		execve(cmd_arg[0], cmd_arg, envp);
 		perror(cmd_arg[0]);
-		exit(0);
+		exit(1);
 	}
 	else
 	{
 		fn_cmd = final_cmd(cmd_arg[0], envp);
 		execve(fn_cmd, cmd_arg, envp);
 		perror(cmd_arg[0]);
-		exit(0);
+		exit(1);
 	}
 }
